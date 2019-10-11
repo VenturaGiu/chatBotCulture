@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="imgShirley">
+    </div>
+    <div id="titulo">
+      Shirley
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div *ngFor="let a of hist; let last = last">
+      <div *ngIf="a.who == 1; else elseBlock">
+        <p style="text-align: right;">
+            {{a.msg}}
+        </p>
+      </div>
+      <ng-template #elseBlock>
+        <div *ngIf="a.card == 1; else elseBlock2">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                {{a.title}}
+              </ion-card-title>
+            </ion-card-header>
+              <ion-card-content>
+                {{a.msg}}
+              </ion-card-content>
+
+            </ion-card>
+          </div>
+          <ng-template #elseBlock2>
+            <p style="text-align: left;">
+              {{a.msg}}
+              <span *ngIf='last'>{{scroll()}}</span>
+            </p>
+          </ng-template>
+
+      </ng-template>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div id="corpinho">
+    <ion-input id="inputPergunta" placeholder="Pergunte a Shirley!" [(ngModel)]="msg" clearInput ></ion-input>
+    <ion-button id="botaum" (click)="enviar()" (click)="scroll()">Enviar</ion-button>
+  </div>
+</ion-footer>
